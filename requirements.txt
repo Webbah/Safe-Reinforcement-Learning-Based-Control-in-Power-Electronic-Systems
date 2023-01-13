@@ -1,0 +1,32 @@
+# to use OMG first:
+# $ conda create -n ENV_Name python=3.8
+# $ conda install -c conda-forge pyfmi
+## created with pipreqs
+
+gym
+matplotlib
+numpy
+tqdm
+pandas
+more_itertools
+numexpr
+tables
+stochastic
+pyyaml~=5.4
+safeopt
+pytest~=5.4.3
+stable_baselines3
+sqlalchemy
+optuna
+sshtunnel
+pymongo
+tensorboard
+future~=0.18.2
+setuptools~=47.1.1
+
+openmodelica_microgrid_gym
+
+control
+polytope
+pypoman
+
