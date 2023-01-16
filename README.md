@@ -16,7 +16,7 @@ In the figure below the feasible set of the plant unter investiagtion is highlig
 All states and action pairs inside the green region are within the feasible set (e.g., the blue point, but not the red).
 
 
-![](docs/img/Feasible_set_smallv.pdf)
+![](docs/img/Feasible_set_smallv.png)
 
 For more details see paper.
 
