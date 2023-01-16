@@ -18,6 +18,8 @@ All states and action pairs inside the green region are within the feasible set 
 
 ![](docs/img/Feasible_set_smallv.png)
 
+This validation is used to ensure safety in RL-based control in power electronic systems.
+
 For more details see paper.
 
 Suggestions or experiences concerning application are welcome!
