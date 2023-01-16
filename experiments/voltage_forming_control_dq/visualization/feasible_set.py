@@ -211,16 +211,16 @@ ax.set_ylabel('$v_{\mathrm{}}\,/\,v_{\mathrm{lim}}$')
 ax.set_xlabel('$i_{\mathrm{}}\,/\,i_{\mathrm{lim}}$')
 ax.set_zlabel('$u_{\mathrm{}}$')
 ax.zaxis.set_rotate_label(False)  # disable automatic rotation
-ax.set_zlabel('$u_{\mathrm{}}\,/\,(V_{\mathrm{DC}}/2)$', rotation=90)
+ax.set_zlabel('$u_{\mathrm{}}\,/\,(v_{\mathrm{DC}}/2)$', rotation=90)
 ax.view_init(20, 20)
 ax.legend(bbox_to_anchor = (0., 0.7, 0.25, 0.2),mode="expand", borderaxespad=0, ncol=1)
 #ax.legend(bbox_to_anchor = (0, 1.02, 1, 0.2), loc="lower left",mode="expand", borderaxespad=0, ncol=1)
 plt.show()
 
 folder_name = "plots_paper"
-save_results = False
+save_results = True
 if save_results:
-    fig.savefig(f'{folder_name}/Feasible_set.pgf')
-    fig.savefig(f'{folder_name}/Feasible_set.png')
-    fig.savefig(f'{folder_name}/Feasible_set.pdf')
+    fig.savefig(f'{folder_name}/Feasible_set_smallv.pgf')
+    fig.savefig(f'{folder_name}/Feasible_set_smallv.png')
+    fig.savefig(f'{folder_name}/Feasible_set_smallv.pdf')
 
