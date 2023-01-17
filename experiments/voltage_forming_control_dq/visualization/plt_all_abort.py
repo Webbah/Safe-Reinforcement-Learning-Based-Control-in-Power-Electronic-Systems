@@ -21,7 +21,7 @@ study_RLS = '370_vDC_SL_RLS_Rconst'
 study_RLS2 = '370_vDC_SL_RLS_Rconst_2'
 study_RLS_picard = '370_vDC_RLS_constR'
 
-save_results = False
+save_results = True
 folder_name = "plots_paper"
 
 if save_results:
@@ -103,18 +103,18 @@ plt.ylabel('Overcurrent/-voltage events')
 plt.xlabel(r'$k\mathrm{}$')
 plt.tick_params(direction='in')
 #plt.ylim([-1000, 11000])
-plt.xlim([-500, 143300])
+plt.xlim([0, 149000])
 plt.grid()
 plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=4)
 ax.set_yscale('symlog')
-#ax.set_xscale('symlog')
+ax.set_xscale('symlog')
 #plt.title("DDPG with safeguard")
 plt.show()
 
 if save_results:
-    fig.savefig(f'{folder_name}/all_aborts.pgf')
-    fig.savefig(f'{folder_name}/all_aborts.png')
-    fig.savefig(f'{folder_name}/all_aborts.pdf')
+    fig.savefig(f'{folder_name}/all_aborts_log.pgf')
+    fig.savefig(f'{folder_name}/all_aborts_log.png')
+    fig.savefig(f'{folder_name}/all_aborts_log.pdf')
 
 
 

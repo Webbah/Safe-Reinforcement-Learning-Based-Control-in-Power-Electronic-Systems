@@ -21,15 +21,14 @@ terminated_list[2] = [1 if i < 13 else tl for i, tl in enumerate(terminated_list
 terminated_list[3] = [1 if i < 14 else tl for i, tl in enumerate(terminated_list[3]) ]
 """
 
-study_name = '370_vDC_SL_RLS_Rconst'
-meas_data_folder='experiment_data/IEMDC/'
+
 trial = ['0']
-episode_list = [list(range(58))]
-terminated_list = [[0]*68]
-terminated_list[0] = [1 if i < 6 else tl for i, tl in enumerate(terminated_list[0]) ]
-terminated_list[0][12] = 1
-terminated_list[0][14] = 1
-terminated_list[0][30] = 1
+episode_list = [list(range(54))]
+terminated_list = [[0]*54]
+terminated_list[0] = [1 if i < 2 else tl for i, tl in enumerate(terminated_list[0]) ]
+#terminated_list[0][12] = 1
+#terminated_list[0][14] = 1
+#terminated_list[0][30] = 1
 
 
 #study_name = '370_vDC_noSL'
@@ -86,6 +85,6 @@ train_data = {
             #"all_aborts_4": abbruch[3,:]
         }
 
-meas_data_folder = "picard/R_load_constant/"
+meas_data_folder = "rewards/"
 df = pd.DataFrame(train_data)
-df.to_pickle('data/' +meas_data_folder +  str(tr) + '_'+ study_name +'_all_aborts_trial_number_' + str(tr) + '.pkl.bz2')
+df.to_pickle('data/' +meas_data_folder +  str(tr) + '_'+ study_name +'2222_all_aborts_trial_number_' + str(tr) + '.pkl.bz2')
