@@ -17,10 +17,10 @@ from experiments.voltage_forming_control_dq.util.config import cfg
 
 
 #study_name = cfg['STUDY_NAME']
-study_name = '370_vDC_SL_RLS_varLoad' # DDPG_RLS
+study_name = '370_vDC_SL_RLS_varLoad' # DDPG_RLS Fig. 9
 trial = ['28']
-study_name = '370_vDC_varLoad' # DDPG
-trial = ['1']
+#study_name = '370_vDC_varLoad' # DDPG Fig. 8
+#trial = ['1']
 
 meas_data_folder = cfg['meas_data_folder']
 episode_list = [ '0']  # , '10', '52', '66', '75']

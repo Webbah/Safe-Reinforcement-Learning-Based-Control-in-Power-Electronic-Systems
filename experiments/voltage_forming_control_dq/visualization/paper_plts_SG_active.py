@@ -17,11 +17,7 @@ from experiments.voltage_forming_control_dq.util.config import cfg
 
 
 
-study_name = '370_vDC_SL_RLS_varLoad'  # cfg['STUDY_NAME']
-trial = ['194']
-episode_list = ['25']
-
-study_name = '370_vDC_SL_RLS_Rconst_2'  # cfg['STUDY_NAME']
+study_name = '370_vDC_SL_RLS_Rconst_2'  # PAPER Fig. 5
 trial = ['4']
 episode_list = ['16']
 meas_data_folder = cfg['meas_data_folder']

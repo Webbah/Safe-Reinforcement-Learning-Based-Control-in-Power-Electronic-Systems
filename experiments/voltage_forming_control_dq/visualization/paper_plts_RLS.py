@@ -17,7 +17,7 @@ from experiments.voltage_forming_control_dq.util.config import cfg
 
 
 
-study_name = '370_vDC_SL_RLS_varLoad'  # cfg['STUDY_NAME']
+study_name = '370_vDC_SL_RLS_varLoad'  # PAPER Fig. 6
 trial = ['194']
 episode_list = ['25']
 
@@ -39,7 +39,7 @@ interval_list_x = [-0.001, 0.28]
 xlim = True
 ylim = False
 
-save_results = True
+save_results = False
 folder_name = "plots_paper"
 save_name = 'training_timeseries_370_vDC_SL_RLS_varLoad_25'
 makedirs(folder_name, exist_ok=True)
