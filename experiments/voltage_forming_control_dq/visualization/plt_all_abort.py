@@ -112,9 +112,9 @@ ax.set_xscale('symlog')
 plt.show()
 
 if save_results:
-    fig.savefig(f'{folder_name}/all_aborts_log.pgf')
-    fig.savefig(f'{folder_name}/all_aborts_log.png')
-    fig.savefig(f'{folder_name}/all_aborts_log.pdf')
+    fig.savefig(f'{folder_name}/all_aborts_log.pgf', bbox_inches='tight')
+    fig.savefig(f'{folder_name}/all_aborts_log.png', bbox_inches='tight', dpi=500)
+    fig.savefig(f'{folder_name}/all_aborts_log.pdf', bbox_inches='tight')
 
 
 

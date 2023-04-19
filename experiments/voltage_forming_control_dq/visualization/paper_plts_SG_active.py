@@ -21,19 +21,19 @@ study_name = '370_vDC_SL_RLS_varLoad'  # cfg['STUDY_NAME']
 trial = ['194']
 episode_list = ['25']
 
-#study_name = '370_vDC_SL_RLS_Rconst_2'  # cfg['STUDY_NAME']
-#trial = ['4']
-#episode_list = ['16']
+study_name = '370_vDC_SL_RLS_Rconst_2'  # cfg['STUDY_NAME']
+trial = ['4']
+episode_list = ['16']
 meas_data_folder = cfg['meas_data_folder']
 #episode_list = ['16']
 terminated_list = ['0']
 add_str = ['','_TEST']
 RLS = 1
-plt_R = 1
+plt_R = 0
 
 
-#interval_list_x = [0.064, 0.075]
-interval_list_x = [-0.001, 0.28]
+interval_list_x = [0.064, 0.075]
+#interval_list_x = [-0.001, 0.28]
 #interval_list_x = [-0.001, 0.11]
 #interval_list_x = [0.0, 0.001]
 xlim = True
@@ -134,7 +134,7 @@ for tr in range(len(trial)):
             #axs[2].plot(t_action, (episode_data['u_b_RL']).to_list()[1:], 'm')
             #axs[2].plot(t_action, (episode_data['u_c_RL']).to_list()[1:], 'y')
             axs[2].grid()
-            #axs[2].scatter(0.0675, 0, s=100, facecolors='none', edgecolors='green', linewidth=2)
+            axs[2].scatter(0.0675, 0, s=100, facecolors='none', edgecolors='green', linewidth=2)
             axs[2].set_xticklabels([])
             axs[2].tick_params(direction='in')
             if ylim:
@@ -149,7 +149,7 @@ for tr in range(len(trial)):
             axs[3].plot(t, (episode_data['u_b_RL'] * 370).to_list(), 'r')
             axs[3].plot(t, (episode_data['u_c_RL'] * 370).to_list(), 'g')
             """
-            """
+
             axs[3].plot(t_action, (episode_data['u_a_RL'] ).to_list()[1:], 'c')
             axs[3].plot(t_action, (episode_data['u_b_RL'] ).to_list()[1:], 'm')
             axs[3].plot(t_action, (episode_data['u_c_RL'] ).to_list()[1:], 'y')
@@ -164,16 +164,16 @@ for tr in range(len(trial)):
             if xlim:
                 axs[3].set_xlim(interval_list_x)
             axs[3].set_ylabel('$\\tilde{u}_{\mathrm{abc,RL}}$')
-            """
+
 
             #axs[3].plot(t, episode_data['Rewards_raw'].to_list(), 'b', label='$\mathrm{r}_\mathrm{env, unscaled}$')
-            axs[3].plot(t_action, episode_data['Rewards_sum'].to_list()[1:], 'k', label='$\mathrm{r}_\mathrm{punish, scaled}$')
-            axs[3].grid()
+            axs[4].plot(t_action, episode_data['Rewards_sum'].to_list()[1:], 'k', label='$\mathrm{r}_\mathrm{punish, scaled}$')
+            axs[4].grid()
             # plt.legend(loc="upper right")
-            axs[3].set_ylabel('$r$')
-            axs[3].tick_params(direction='in')
+            axs[4].set_ylabel('$r$')
+            axs[4].tick_params(direction='in')
             if xlim:
-                axs[3].set_xlim(interval_list_x)
+                axs[4].set_xlim(interval_list_x)
             props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
             #axs[4].text(0.25, 0.95, "$\mathrm{r}_\mathrm{min}(-0.75) \cdot (1-\gamma) = -0.04$",
              #           transform=axs[3].transAxes, fontsize=14,
@@ -418,14 +418,13 @@ for tr in range(len(trial)):
                 axs[1, 1].set_ylabel('$A_{\mathrm{22}}$')
                 axs[1, 1].set_xlabel('$t_{\mathrm{}}\,/\,\mathrm{s}$')
                 #plt.tick_params(direction='in')
-                fig.align_ylabels()
                 plt.show()
                 time.sleep(0.5)
 
                 if save_results:
-                    fig.savefig(f'{folder_name}/' + study_name + save_name + 'Ac.pgf', bbox_inches='tight')
-                    fig.savefig(f'{folder_name}/' + study_name + save_name +'Ac.png', bbox_inches='tight', dpi=500)
-                    fig.savefig(f'{folder_name}/' + study_name + save_name +'Ac.pdf', bbox_inches='tight')
+                    fig.savefig(f'{folder_name}/' + study_name + save_name + 'Ac.pgf')
+                    fig.savefig(f'{folder_name}/' + study_name + save_name +'Ac.png')
+                    fig.savefig(f'{folder_name}/' + study_name + save_name +'Ac.pdf')
 
 
         asd = 1

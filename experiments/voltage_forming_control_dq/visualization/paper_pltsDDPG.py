@@ -17,10 +17,12 @@ from experiments.voltage_forming_control_dq.util.config import cfg
 
 
 #study_name = cfg['STUDY_NAME']
-study_name = '370_vDC_varLoad'
-meas_data_folder = cfg['meas_data_folder']
+study_name = '370_vDC_SL_RLS_varLoad' # DDPG_RLS
 trial = ['28']
+study_name = '370_vDC_varLoad' # DDPG
 trial = ['1']
+
+meas_data_folder = cfg['meas_data_folder']
 episode_list = [ '0']  # , '10', '52', '66', '75']
 # episode_list = ['2', '34', '46' ,'60']
 terminated_list = ['0', '0', '0', '0']
@@ -186,13 +188,16 @@ for tr in range(len(trial)):
                 axs[4].tick_params(direction='in')
             else:
                 axs[4].set_xlabel('$t_{\mathrm{}}\,/\,\mathrm{s}$')
+            fig.align_ylabels()
             plt.show()
             time.sleep(0.5)
 
+
+
             if save_results:
-                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.pgf')
-                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.png')
-                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.pdf')
+                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.png', bbox_inches='tight', dpi=500)
+                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.pdf', bbox_inches='tight')
+                fig.savefig(f'{folder_name}/' + study_name + 'timeseries_testcase.pgf', bbox_inches='tight')
 
             phase = episode_data['Phase'].tolist()  # env_test.env.net.components[0].phase
             v_dq0 = abc_to_dq0(np.array([episode_data['v_a_training'], episode_data['v_b_training'], episode_data['v_c_training']]), phase)

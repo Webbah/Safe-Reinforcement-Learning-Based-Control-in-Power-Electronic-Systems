@@ -22,10 +22,11 @@ trial = ['194']
 
 study_name = '370_vDC_SL_RLS_Rconst_2'  # cfg['STUDY_NAME']
 trial = ['4']
-
+study_name = '370_vDC_SL'  # cfg['STUDY_NAME']
+trial = ['1']
 meas_data_folder = cfg['meas_data_folder']
 episode_list = ['25']
-episode_list = ['16']
+episode_list = ['52']
 terminated_list = ['0']
 add_str = ['','_TEST']
 RLS = 1
@@ -35,12 +36,12 @@ plt_R = 0
 interval_list_x = [0.064, 0.075]
 #interval_list_x = [-0.001, 0.11]
 #interval_list_x = [0.0, 0.001]
-xlim = True
-ylim = True
+xlim = False
+ylim = False
 
 save_results = True
 folder_name = "plots_paper"
-save_name = 'SG_example_timeseries'
+save_name = 'SG_R_const_end'
 makedirs(folder_name, exist_ok=True)
 
 
@@ -59,7 +60,7 @@ for tr in range(len(trial)):
     if episode_list is not None:
         for episode, terminated in zip(episode_list, terminated_list):
             episode_data = pd.read_pickle(
-                'data/'+ meas_data_folder +  study_name + '/' + trial[tr] + '/' + trial[tr] + '_' + study_name +
+                'data/'+ meas_data_folder  + trial[tr] + '_' + study_name +
                 #'data/' + meas_data_folder + '/' + trial[tr] + '_' + study_name +
                 '_training_episode_number_' + episode
                 + '_terminated' + terminated + add_str[ep_count] + '.pkl.bz2')

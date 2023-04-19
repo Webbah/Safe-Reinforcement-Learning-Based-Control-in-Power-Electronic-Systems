@@ -117,25 +117,30 @@ rew_std_plt_RLS = rew_std_RLS[window_size:stop]
 steps = np.arange(len(rew_mean_plt))
 
 fig, ax = plt.subplots(figsize=(6, 3.5))
-
+"""
 plt.fill_between(steps, rew_mean_plt_noSL + rew_std_plt_noSL, rew_mean_plt_noSL - rew_std_plt_noSL, facecolor='b', alpha=0.25)
 plt.plot( rew_mean_plt_noSL, 'b', linewidth=2, label='$\mathrm{DDPG_{}}$')
 plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=4)
 plt.plot(rew_mean_plt_noSL - rew_std_plt_noSL, '--b', linewidth=0.5)
 plt.plot(rew_mean_plt_noSL + rew_std_plt_noSL, '--b', linewidth=0.5)
-
-plt.fill_between(steps, rew_mean_plt + rew_std_plt, rew_mean_plt - rew_std_plt, facecolor='r', alpha=0.25)
-plt.plot( rew_mean_plt, 'r', linewidth=2, label='$\mathrm{DDPG_{SG}}$')
+"""
+#plt.fill_between(steps, rew_mean_plt + rew_std_plt, rew_mean_plt - rew_std_plt, facecolor='r', alpha=0.25)
+#plt.plot( rew_mean_plt, 'r', linewidth=2, label='$\mathrm{DDPG_{SG}}$')
+#plt.plot( rew_array[0,window_size:stop], 'r', linewidth=1, label='$\mathrm{DDPG_{SG}}$')
+plt.plot( rew_array[1,window_size:stop], 'r', linewidth=2, label='$\mathrm{DDPG_{SG}}$')
+#plt.plot( rew_array[2,window_size:stop], 'r', linewidth=1, label='$\mathrm{DDPG_{SG}}$')
+#plt.plot( rew_array[3,window_size:stop], 'r', linewidth=1, label='$\mathrm{DDPG_{SG}}$')
+#plt.plot( rew_array[4,window_size:stop], 'r', linewidth=1, label='$\mathrm{DDPG_{SG}}$')
 plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=4)
-plt.plot(rew_mean_plt - rew_std_plt, '--r', linewidth=0.5)
-plt.plot(rew_mean_plt + rew_std_plt, '--r', linewidth=0.5)
-
+#plt.plot(rew_mean_plt - rew_std_plt, '--r', linewidth=0.5)
+#plt.plot(rew_mean_plt + rew_std_plt, '--r', linewidth=0.5)
+"""
 plt.fill_between(steps, rew_mean_plt_RLS + rew_std_plt_RLS, rew_mean_plt - rew_std_plt_RLS, facecolor='g', alpha=0.25)
 plt.plot( rew_mean_plt_RLS, 'g', linewidth=2, label='$\mathrm{DDPG_{SG,RLS}}$')
 plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=4)
 plt.plot(rew_mean_plt_RLS - rew_std_plt_RLS, '--g', linewidth=0.5)
 plt.plot(rew_mean_plt_RLS + rew_std_plt_RLS, '--g', linewidth=0.5)
-
+"""
 #plt.plot( rew_mean_plt_noSL, 'r', linewidth=2)#, label='$\mathrm{SEC}$')
 #plt.plot( rew_mean[window_size:], 'b', linewidth=2)#, label='$\mathrm{SEC}$')
 #plt.ylim([0.034, 0.049])
@@ -144,7 +149,7 @@ plt.plot(rew_mean_plt_RLS + rew_std_plt_RLS, '--g', linewidth=0.5)
 plt.ylabel('$\overline{r}_{k}$')
 plt.xlabel(r'$k\mathrm{}$')
 plt.tick_params(direction='in')
-plt.ylim([-0.025, 0.055])
+#plt.ylim([-0.025, 0.055])
 plt.xlim([-500, 143300])
 plt.grid()
 #plt.title("DDPG with safeguard")
@@ -159,9 +164,9 @@ plt.show()
 """
 
 if save_results:
-    fig.savefig(f'{folder_name}/all_rewards_MA_1000_Rconst2.pgf', bbox_inches='tight')
-    fig.savefig(f'{folder_name}/all_rewards_MA_1000_Rconst2.png', bbox_inches='tight', dpi=500)
-    fig.savefig(f'{folder_name}/all_rewards_MA_1000_Rconst2.pdf', bbox_inches='tight')
+    fig.savefig(f'{folder_name}/rewards_SG.pgf', bbox_inches='tight')
+    fig.savefig(f'{folder_name}/rewards_SG.png', bbox_inches='tight', dpi=500)
+    fig.savefig(f'{folder_name}/rewards_SG.pdf', bbox_inches='tight')
 
 
 
