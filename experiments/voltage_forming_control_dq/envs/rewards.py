@@ -144,3 +144,41 @@ class Reward:
         rew = np.sum(1 - ((np.abs(vsp_dq0_master - vdq0_master) / 2) ** self.exponent)) * (1 - self.gamma) / 3
 
         return rew
+
+
+    def rew_fun_dq0_raw(self, vdq0_master, vsp_dq0_master, i_meas) -> float:
+        """
+        uses the same reward for voltage like defined above but takes as input voltage, current meas and ref directly
+
+        """
+
+
+        # SP = vsp_dq0_master * self.lim
+        # mess = vdq0_master * self.lim
+
+        if any(np.abs(vdq0_master) > 1) or any(np.abs(i_meas) > 1):
+            if self.det_run:
+                return -1#-(1 - self.gamma)
+            else:
+                return
+        else:
+            # rew = np.sum(1 - (2 * (np.abs(vsp_dq0_master - vdq0_master)) ** self.exponent)) * (1 - self.gamma) / 3  # /2
+
+            # / 2 da normiert auf v_lim = 1, max abweichung 2*vlim=2, damit worst case bei 0
+            #rew = np.sum(1 - ((np.abs(vsp_dq0_master - vdq0_master) / 2) ** self.exponent)) * (1 - self.gamma) / 3  # /2
+
+            # using safeguard the
+            rew = np.sum(1 - ((np.abs(vsp_dq0_master - vdq0_master) / (2*self.v_max/self.lim)) ** self.exponent))
+                  #* (1 - self.gamma) / 3  # /2
+
+            if any(np.abs(i_meas) > (self.i_ratio + 0.1)):    # +0.1 to consider meas. noise...
+                for i_mess in i_meas:
+                    if abs(i_mess) > (self.i_ratio + 0.1):
+                        #rew += ((self.i_ratio - 1)/0.05 * abs(i_mess) + self.i_ratio * (1- self.i_ratio) / 0.05) \
+                        rew += (-0.25 / (1 - self.i_ratio) * abs(i_mess) +
+                                self.i_ratio * 0.25 / (1- self.i_ratio))
+                            #* (1 - self.gamma)
+        """
+        rew = np.sum(-((np.abs(vsp_dq0_master - vdq0_master)) ** self.exponent)) * (1 - self.gamma) / 3  # /2
+        """
+        return rew

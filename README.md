@@ -1,5 +1,5 @@
 # Safe-Reinforcement-Learning-Based-Control-in-Power-Electronic-Systems
-[Read the Paper]() Link will follow when published
+[Read the Paper](https://ieeexplore.ieee.org/document/10182718)
 
 Data-driven approaches such as reinforcement learning (RL) allow a controller design without a priori system knowledge with minimal human effort as well as seamless self-adaptation to varying system characteristics.
 However, RL does not inherently consider input and state constraints, i.e., satisfying safety-relevant system limits during training and test.

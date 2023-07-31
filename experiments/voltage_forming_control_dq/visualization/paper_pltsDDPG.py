@@ -104,7 +104,7 @@ for tr in range(len(trial)):
             if xlim:
                 axs[1].set_xlim(interval_list_x)
             axs[1].set_ylabel('$i_{\mathrm{abc}}\,/\,\mathrm{A}$')
-            axs[3].set_xlabel(r'$t\,/\,\mathrm{s}$')
+            #axs[3].set_xlabel(r'$t\,/\,\mathrm{s}$')
             # plt.show()
 
             axs[0].plot(t, episode_data['v_a_training'].to_list(), 'c')
@@ -137,7 +137,8 @@ for tr in range(len(trial)):
             if xlim:
                 axs[2].set_xlim(interval_list_x)
             #axs[2].set_ylabel('$u_{\mathrm{abc,SG}}$')
-            axs[2].set_ylabel('$\\tilde{u}_{\mathrm{abc,RL}}$')
+            #axs[2].set_ylabel('$\\tilde{u}_{\mathrm{abc,RL}}$')
+            axs[2].set_ylabel('$\\tilde{u}$')
 
             """
             axs[3].plot(t, (episode_data['u_a_RL'] * 370).to_list(), 'b')

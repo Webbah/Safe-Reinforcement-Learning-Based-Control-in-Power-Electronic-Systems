@@ -3,6 +3,7 @@ from os import makedirs
 
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import *
 import pandas as pd
 import numpy as np
 import scipy
@@ -39,7 +40,7 @@ interval_list_x = [-0.001, 0.28]
 xlim = True
 ylim = False
 
-save_results = False
+save_results = True
 folder_name = "plots_paper"
 save_name = 'training_timeseries_370_vDC_SL_RLS_varLoad_25'
 makedirs(folder_name, exist_ok=True)
@@ -196,7 +197,7 @@ for tr in range(len(trial)):
             fig.align_ylabels()
             plt.show()
             time.sleep(0.5)
-
+            """
             if save_results:
                 fig.savefig(f'{folder_name}/' + study_name + 'timeseries.png', bbox_inches='tight', dpi=500)
                 fig.savefig(f'{folder_name}/' + study_name + 'timeseries.pgf', bbox_inches='tight')
@@ -330,6 +331,7 @@ for tr in range(len(trial)):
             plt.show()
             time.sleep(0.5)
 
+            """
 
             if RLS:
                 R_load = episode_data['R_load_training'].to_numpy()
@@ -357,7 +359,7 @@ for tr in range(len(trial)):
                 if save_results:
                     params = {'backend': 'ps',
                               'text.latex.preamble': [r'\usepackage{gensymb}'
-                                                      r'\usepackage{amsmath,amssymb,mathtools}'
+                                                      r'\usepackage{amsmath,amssymb,mathtools,bm}'
                                                       r'\newcommand{\mlutil}{\ensuremath{\operatorname{ml-util}}}'
                                                       r'\newcommand{\mlacc}{\ensuremath{\operatorname{ml-acc}}}'],
                               'axes.labelsize': 12.5,  # fontsize for x and y labels (was 10)
@@ -367,18 +369,21 @@ for tr in range(len(trial)):
                               'xtick.labelsize': 12,
                               'ytick.labelsize': 12,
                               'text.usetex': True,
-                              'figure.figsize': [8, 6],  # [4.5, 7.5],
+                              'figure.figsize': [9, 5.5], #[8, 6],  # [4.5, 7.5],
                               'font.family': 'serif',
                               'lines.linewidth': 1.2
                               }
                     matplotlib.rcParams.update(params)
+                    #rcParams['mathtext.fontset'] = 'custom'
+                    #rcParams['mathtext.it'] = 'STIXGeneral:italic'
+                    #rcParams['mathtext.bf'] = 'STIXGeneral:italic:bold'
 
                 fig, axs = plt.subplots(2, 2)#, figsize=(9, 7))
-                plt.subplots_adjust(wspace = 0.4, hspace = 0.1)
+                plt.subplots_adjust(wspace = 0.05, hspace = 0.05)
                 #plt.subplots_adjust(left=0.1,bottom = 0.1,right = 0.9,top = 0.9, wspace = 0.4, hspace = 0.4)
-                axs[0, 0].plot(t[1:], episode_data['A11_c'].to_list()[1:], 'b', label='$A_\mathrm{RLS}$')
-                axs[0, 0].plot(t[1:], A_d2[0, 0, 1:], ':', color='red', label='$A_\mathrm{}$')
-                axs[0, 0].legend(bbox_to_anchor=(0.7, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0,
+                axs[0, 0].plot(t[1:], episode_data['A11_c'].to_list()[1:], 'b', label='$\\textbf{\\textit{A}}_\mathrm{RLS}$')
+                axs[0, 0].plot(t[1:], A_d2[0, 0, 1:], ':', color='red', label='$\\textbf{\\textit{A}}_\mathrm{}$')
+                axs[0, 0].legend(bbox_to_anchor=(0.5, 1.02, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0,
                               ncol=4)
                 # axs[0, 0].plot(t[1:], ones_vec * A_d[0, 0], ':', color='red')
                 axs[0, 0].grid()
@@ -387,25 +392,27 @@ for tr in range(len(trial)):
                 axs[0, 0].set_xticklabels([])
                 axs[0, 0].tick_params(direction='in')
                 #axs[0, 0].set_ylabel('Ad11_c')
-                axs[0, 0].set_ylabel('$A_{\mathrm{11}}$')
+                axs[0, 0].set_ylabel('$\\textbf{\\textit{A}}_{\mathrm{11}}$')
                 axs[0, 1].plot(t[1:], episode_data['A12_c'].to_list()[1:], 'b')
                 axs[0, 1].plot(t[1:], A_d2[0, 1, 1:], ':', color='red')
                 # axs[0, 1].plot(t[1:], ones_vec * A_d[0, 1], ':', color='red')
                 axs[0, 1].grid()
+                axs[0, 1].yaxis.tick_right()
+                axs[0, 1].yaxis.set_label_position("right")
                 axs[0, 1].set_ylim([ -1.932, -1.918])
                 if xlim:
                     axs[0, 1].set_xlim(interval_list_x)
                 axs[0, 1].set_xticklabels([])
                 axs[0, 1].tick_params(direction='in')
                 axs[0, 1].set_ylabel('Ad12_c')
-                axs[0, 1].set_ylabel('$A_{\mathrm{12}}$')
+                axs[0, 1].set_ylabel('$\\textbf{\\textit{A}}_{\mathrm{12}}$')
                 axs[1, 0].plot(t[1:], episode_data['A21_c'].to_list()[1:], 'b')
                 axs[1, 0].plot(t[1:], A_d2[1, 0, 1:], ':', color='red')
                 # axs[1, 0].plot(t[1:], ones_vec * A_d[1, 0], ':', color='red')
                 axs[1, 0].grid()
                 if xlim:
                     axs[1, 0].set_xlim(interval_list_x)
-                axs[1, 0].set_ylabel('$A_{\mathrm{21}}$')
+                axs[1, 0].set_ylabel('$\\textbf{\\textit{A}}_{\mathrm{21}}$')
                 axs[1, 0].tick_params(direction='in')
                 axs[1, 0].set_xlabel('$t_{\mathrm{}}\,/\,\mathrm{s}$')
                 axs[1, 1].plot(t[1:], episode_data['A22_c'].to_list()[1:], 'b')
@@ -415,9 +422,12 @@ for tr in range(len(trial)):
                 if xlim:
                     axs[1, 1].set_xlim(interval_list_x)
                 axs[1, 1].tick_params(direction='in')
-                axs[1, 1].set_ylabel('$A_{\mathrm{22}}$')
+                axs[1, 1].set_ylabel('$\\textbf{\\textit{A}}_{\mathrm{22}}$')
                 axs[1, 1].set_xlabel('$t_{\mathrm{}}\,/\,\mathrm{s}$')
                 #plt.tick_params(direction='in')
+                fig.align_ylabels()
+                axs[1, 1].yaxis.set_label_position("right")
+                plt.gca().yaxis.tick_right()
                 fig.align_ylabels()
                 plt.show()
                 time.sleep(0.5)
